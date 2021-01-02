@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-const Game = ({ name, date, image }) => {
+const Game = ({ name, released, image }) => {
   return (
     <StyledGame>
       <h3>{name}</h3>
-      <p>{date}</p>
+      <p>{released}</p>
       <img src={image} alt={name} />
     </StyledGame>
   );
