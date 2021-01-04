@@ -5,37 +5,41 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const GameDetail = () => {
-  const { screenshot, game } = useSelector((state) => state.detail);
+  const { screenshot, game, isLoading } = useSelector((state) => state.detail);
   return (
-    <CardShadow className="card-shadow">
-      <CardDetail>
-        <Stats>
-          <div className="rating">
-            <h3>{game.name}</h3>
-            <p>{game.rating}</p>
-          </div>
-        </Stats>
-        <Info>
-          <h3>Platforms</h3>
-          <Platforms>
-            {game.platforms.map((data) => (
-              <h3 key={data.platform.id}>{data.platform.name}</h3>
-            ))}
-          </Platforms>
-        </Info>
-        <Media>
-          <img src={game.background_image} alt="game" />
-        </Media>
-        <Description>
-          <p>{game.description_raw}</p>
-        </Description>
-        <div className="gallery">
-          {screenshot.results.map((screen) => (
-            <img src={screen.image} alt="game screenshot" key={screen.id} />
-          ))}
-        </div>
-      </CardDetail>
-    </CardShadow>
+    <>
+      {!isLoading && (
+        <CardShadow className="card-shadow">
+          <CardDetail>
+            <Stats>
+              <div className="rating">
+                <h3>{game.name}</h3>
+                <p>{game.rating}</p>
+              </div>
+            </Stats>
+            <Info>
+              <h3>Platforms</h3>
+              <Platforms>
+                {game.platforms.map((data) => (
+                  <h3 key={data.platform.id}>{data.platform.name}</h3>
+                ))}
+              </Platforms>
+            </Info>
+            <Media>
+              <img src={game.background_image} alt="game" />
+            </Media>
+            <Description>
+              <p>{game.description_raw}</p>
+            </Description>
+            <div className="gallery">
+              {screenshot.results.map((screen) => (
+                <img src={screen.image} alt="game screenshot" key={screen.id} />
+              ))}
+            </div>
+          </CardDetail>
+        </CardShadow>
+      )}
+    </>
   );
 };
 
